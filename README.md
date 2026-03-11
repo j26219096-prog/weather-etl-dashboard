@@ -2,7 +2,7 @@
 
 > **Real-time ETL pipeline monitoring weather & AQI across 5 global cities — New York, London, Tokyo, Delhi & Sydney. Extracts live data from OpenWeatherMap, transforms it into key metrics, and streams it into a responsive dark dashboard. Zero backend, zero dependencies. Hosted on GitHub Pages.**
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-38BDF8?style=for-the-badge&logo=github)](https://YOUR-USERNAME.github.io/weather-etl-dashboard)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-38BDF8?style=for-the-badge&logo=github)](https://github.com/j26219096-prog/weather-etl-dashboard)
 [![HTML](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
 [![CSS](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
@@ -79,7 +79,7 @@ Your key is saved in your browser's `localStorage` — it never leaves your devi
 
 Your dashboard goes live at:
 ```
-https://YOUR-USERNAME.github.io/weather-etl-dashboard
+https://github.com/j26219096-prog/weather-etl-dashboard
 ```
 
 ---
@@ -127,3 +127,4 @@ MIT — free to use, modify, and deploy.
 - [OpenWeatherMap](https://openweathermap.org) — weather & AQI data
 - [Inter Font](https://rsms.me/inter/) — typography
 - [GitHub Pages](https://pages.github.com) — free hosting
+
