@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Live City Pulse — Real-time Weather & AQI Dashboard</title>
+    <meta name="description"
+        content="Real-time weather and Air Quality Index (AQI) dashboard for 5 major cities worldwide. Powered by OpenWeatherMap." />
+    <meta property="og:title" content="Live City Pulse" />
+    <meta property="og:description" content="Real-time weather & AQI pipeline dashboard" />
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="app">
+        <!-- ── Header ── -->
+        <header class="header">
+            <div class="brand-row">
+                <div class="brand-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                    </svg>
+                </div>
+                <div class="brand-text">
+                    <h1 class="app-title">Live City Pulse</h1>
+                    <p class="app-subtitle">Real-time weather &amp; AQI pipeline</p>
+                    <span class="source-badge badge-live" id="sourceBadge">
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5">
+                            <path d="M5 12.55a11 11 0 0 1 14.08 0" />
+                            <path d="M1.42 9a16 16 0 0 1 21.16 0" />
+                            <path d="M8.53 16.11a6 6 0 0 1 6.95 0" />
+                            <line x1="12" y1="20" x2="12.01" y2="20" />
+                        </svg>
+                        Live API
+                    </span>
+                </div>
+            </div>
+            <div class="header-controls">
+                <button class="refresh-btn" id="refreshBtn" onclick="loadData()" aria-label="Refresh city data">
+                    <svg class="refresh-icon" id="refreshIcon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="23 4 23 10 17 10"></polyline>
+                        <polyline points="1 20 1 14 7 14"></polyline>
+                        <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                    </svg>
+                    <span id="refreshLabel">Refresh Data</span>
+                </button>
+                <select class="source-select" id="sourceSelect" onchange="switchSource(this.value)"
+                    aria-label="Data source">
+                    <option value="live">🌐 Live API</option>
+                    <option value="mock">🎲 Mock Data</option>
+                </select>
+                <button class="key-btn" id="keyOpenBtn" aria-label="Set API Key"
+                    title="Set your OpenWeatherMap API key">
+                    🔑 API Key
+                </button>
+            </div>
+            <p class="last-refresh" id="lastRefresh" style="display:none"></p>
+            <div class="error-banner" id="errorBanner" style="display:none">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FCA5A5" stroke-width="2">
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="12" y1="8" x2="12" y2="12" />
+                    <line x1="12" y1="16" x2="12.01" y2="16" />
+                </svg>
+                <span id="errorText"></span>
+            </div>
+            <div class="section-row">
+                <span class="section-label">5 Cities Monitored</span>
+                <span class="live-dot"></span>
+            </div>
+        </header>
+
+        <!-- ── City Cards Grid ── -->
+        <main class="cards-grid" id="cardsGrid" role="main" aria-label="City weather cards">
+            <!-- Skeleton placeholders shown on load -->
+            <div class="skeleton" aria-hidden="true">
+                <div class="skeleton-line"></div>
+                <div class="skeleton-line skel-60"></div>
+                <div class="skeleton-line skel-40"></div>
+            </div>
+            <div class="skeleton" aria-hidden="true">
+                <div class="skeleton-line"></div>
+                <div class="skeleton-line skel-60"></div>
+                <div class="skeleton-line skel-40"></div>
+            </div>
+            <div class="skeleton" aria-hidden="true">
+                <div class="skeleton-line"></div>
+                <div class="skeleton-line skel-60"></div>
+                <div class="skeleton-line skel-40"></div>
+            </div>
+            <div class="skeleton" aria-hidden="true">
+                <div class="skeleton-line"></div>
+                <div class="skeleton-line skel-60"></div>
+                <div class="skeleton-line skel-40"></div>
+            </div>
+            <div class="skeleton" aria-hidden="true">
+                <div class="skeleton-line"></div>
+                <div class="skeleton-line skel-60"></div>
+                <div class="skeleton-line skel-40"></div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>Live City Pulse &nbsp;·&nbsp; Weather data by <a href="https://openweathermap.org" target="_blank"
+                    rel="noopener">OpenWeatherMap</a></p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+
+    <!-- ── API Key Modal ── -->
+    <div class="modal-backdrop" id="keyModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"
+        style="display:none">
+        <div class="modal">
+            <div class="modal-header">
+                <span class="modal-icon">🔑</span>
+                <div>
+                    <h2 class="modal-title" id="modalTitle">OpenWeatherMap API Key</h2>
+                    <p class="modal-subtitle">Your key is saved only in <strong>your browser</strong> — never sent to
+                        any server or stored in code.</p>
+                </div>
+            </div>
+
+            <label class="modal-label" for="keyInput">API Key</label>
+            <input class="modal-input" id="keyInput" type="password"
+                placeholder="Paste your key here (e.g. b1af733d...)" autocomplete="off" spellcheck="false" />
+            <p class="modal-hint">
+                Get a free key at <a href="https://openweathermap.org/api" target="_blank"
+                    rel="noopener">openweathermap.org/api</a> &mdash; takes 2 minutes.
+            </p>
+
+            <div class="modal-actions">
+                <button class="modal-btn modal-btn-primary" id="keySaveBtn">Save &amp; Use Live API</button>
+                <button class="modal-btn modal-btn-ghost" id="keySkipBtn">Use Mock Data Instead</button>
+                <button class="modal-btn modal-btn-danger" id="keyClearBtn">Clear Saved Key</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
