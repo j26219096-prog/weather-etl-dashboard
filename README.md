@@ -73,12 +73,7 @@ Your key is saved in your browser's `localStorage` — it never leaves your devi
 
 ## 🌐 Deploy to GitHub Pages
 
-1. Create a new GitHub repository (e.g. `weather-etl-dashboard`)
-2. Upload `index.html`, `style.css`, and `app.js`
-3. Go to **Settings → Pages → Source → Deploy from branch → main → / (root)**
-4. Click **Save**
-
-Your dashboard goes live at:
+ dashboard goes live at:
 ```
 https://j26219096-prog.github.io/weather-etl-dashboard
 
@@ -129,5 +124,6 @@ MIT — free to use, modify, and deploy.
 - [OpenWeatherMap](https://openweathermap.org) — weather & AQI data
 - [Inter Font](https://rsms.me/inter/) — typography
 - [GitHub Pages](https://pages.github.com) — free hosting
+
 
 
