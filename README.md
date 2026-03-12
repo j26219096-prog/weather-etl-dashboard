@@ -125,5 +125,9 @@ MIT — free to use, modify, and deploy.
 - [Inter Font](https://rsms.me/inter/) — typography
 - [GitHub Pages](https://pages.github.com) — free hosting
 
+## 👨‍💻 GIT username: j26219096-prog
+* **Name:** Jawahar R (Dhanalakshmi Srinivasan Engineering College)
+* **Focus:** AI & Data Science
+
 
 
